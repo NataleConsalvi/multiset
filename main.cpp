@@ -17,7 +17,7 @@ int main(){
     cout << "a: " << m.get('a') << endl;  // a: 2
     cout << "b: " << m.get('b') << endl;  // b: 1
     cout << "c: " << m.get('c') << endl;  // c: 0
-    cout << "size: " << m.size() << endl; // 3
+    cout << m.size() << endl; // 3
     cout << m.as_string() << endl;    
 
     m.removen('a', 2);

@@ -2,6 +2,7 @@
 #define MULTISET_H
 
 #include <unordered_map>
+#include <sstream>
 
 void debug_stamp(std::string s){
     std::cout << "DEBUG: " << s << "." << std::endl;
@@ -19,7 +20,9 @@ class MultiSet{
             MUST run in O(1)       
         */
         void add(const T el){
-            //debug_stamp(std::string("adding" + el));
+            std::stringstream s;
+            s << "adding " << el;
+            debug_stamp(s.str());
             if(umap.count(el) == 1){
                 umap[el]++;
             }else{
@@ -51,7 +54,9 @@ class MultiSet{
                 MUST run in O(1)
         */
         void removen(const T el, const int n){
-            //debug_stamp(std::string("removing" + el + "," + std::to_string(n)));
+            std::stringstream s;
+            s << "removing " << el << ", " << n;
+            debug_stamp(s.str());
             if(n < 0){
                 throw std::invalid_argument(std::string("n is negative! n = " + std::to_string(n)));
             }else{
@@ -62,24 +67,22 @@ class MultiSet{
                         umap[el] = umap[el] - n;
                     }
                 }else{
-                    
+
                 }
 
             }
         }
 
         std::string as_string(){
-            std::string s = "{\n";
+            std::stringstream s;
+            s << "{\n";
             for(std::pair<T,int>elem:umap){
-                s += "\t{";
-                s += elem.first;
-                s += ", ";
-                s += std::to_string(elem.second);
-                s += "}\n";
+                s << "\t{" << elem.first << ", " << elem.second << "}\n";
             }
-            s += "}";
-            return s;
+            s << "}";
+            return s.str();          
         }
+
 
         /**
             * RETURN the number of elements within the multiset (sum of all multiplicites)
@@ -87,6 +90,7 @@ class MultiSet{
             * MUST run in O(k) where k is the number of keys
         */
         int size() const{
+            debug_stamp(std::string("calculating size of multiset, size = "));
             int ret = 0;
             for(std::pair<T,int>elem:umap){
                 ret += elem.second;
