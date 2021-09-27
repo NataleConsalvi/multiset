@@ -40,7 +40,6 @@ std::pair<int,int> str2pair(string sis){
     ret.second = stoi(second);
 
     return ret;
-
 }
  
 /**
