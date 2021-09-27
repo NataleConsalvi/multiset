@@ -23,18 +23,18 @@ struct Triplet {
 * RETURN the pair as a string like 12,345
 */
 string pair2str(const std::pair<int,int>& shape) {
-    return string(shape.first+ "," + shape.second);
+    return string(std::to_string(shape.first) + "," + std::to_string(shape.second));
 }
  
 /**
 * Given a string like 12,345 RETURN the pair (12, 345)
 * HINT: use string .find() and  stoi(string) for conversion
 */
-std::pair<int,int> str2pair(string s){
+std::pair<int,int> str2pair(string sis){
     std::pair<int,int> ret;
-    int i = s.find(',');
-    string first = s.substr(0,i);
-    string second = s.substr(i + 1, s.size());
+    int i = sis.find(',',0);
+    string first = sis.substr(0,i);
+    string second = sis.substr(i + 1, sis.size());
 
     ret.first = stoi(first);
     ret.second = stoi(second);
@@ -51,10 +51,12 @@ string triplets2str(const vector<Triplet<T>>& ts) {
     std::stringstream s;
     s << "{";
     for(int i = 0; i < ts.size(); i++){
-        s << "{" << ts[i].row << "," <<  ts[i].col << "," << ts[i].value << "}";
+        s << "{" << ts[i].row << "," <<  ts[i].col << "," << ts[i].value << "}" << ",";
     }
-    s << "}";
-    return s.str();
+    string ss = s.str();
+    ss.resize(ss.size() - 1);
+    ss += "}";
+    return ss;
 }
  
  

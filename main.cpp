@@ -1,14 +1,29 @@
 #include <iostream>
 #include <unordered_map>
 #include "MultiSet.h"
+#include "Matrix.h"
+
+#include <stdexcept>
+#include <string>
+#include <sstream>
+ 
+#include <tuple>
+#include <vector>
 
 using std::cout;
 using std::endl;
 
+void conversions_example(){
+   cout << endl;
+   cout << "---- Conversions" << endl;
+   cout << "pair2str(12,345): " << pair2str({12,345}) << endl;
+   cout << "str2pair(\"12,345\"): " << pair2str(str2pair("12,345")) << endl;
+   cout << "triplets2str<int>({{1,3,2}, {6,3,5}, {9,2,5}, {1,5,3}})"
+        << triplets2str<int>({{1,3,2}, {6,3,5}, {9,2,5}, {1,5,3}}) << endl;
+}
 
-int main(){
-
-    cout << endl;
+void main_multiset(){
+        cout << endl;
     cout << " ----- MULTISET" << endl;
     MultiSet<char> m = MultiSet<char>();
     m.add('a');
@@ -47,7 +62,12 @@ int main(){
     cout << m.as_string() << endl;   
 
     // c: 3   
+}
+
+
+int main(){
+    
+    //main_multiset();
+    conversions_example();
     return 0;
-
-
 }
